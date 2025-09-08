@@ -1,1 +1,1 @@
-# ga_resources
+# Graded Assignement Week-1 resources
