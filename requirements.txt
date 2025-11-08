@@ -1,13 +1,13 @@
 # Core ML
-scikit-learn==1.5.2
+numpy==2.1.3
 pandas==2.2.3
-numpy==1.26.4
+scikit-learn==1.6.1
 
 # Feast + DVC
 feast==0.56.0
 dvc[gs]==3.63.0
 
-# Testing + CI
+# Testing + CI/CD
 pytest==8.3.2
 cml==0.0.1
 
