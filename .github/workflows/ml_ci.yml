@@ -47,6 +47,14 @@ jobs:
           gcloud auth list
           gcloud config list project
 
+            # --- Configure DVC Remote with credentials ---
+      - name: Configure DVC remote credentials
+        env:
+          GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.GCP_SA_KEY }}
+        run: |
+          echo "$GOOGLE_APPLICATION_CREDENTIALS" > /tmp/gcp-key.json
+          dvc remote modify gcsremote credentialpath /tmp/gcp-key.json
+
       # --- Pull data from DVC remote (GCS) ---
       - name: Pull data from DVC remote
         run: |
