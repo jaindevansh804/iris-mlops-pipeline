@@ -1,5 +1,8 @@
 name: MLOps CI Pipeline
-
+permissions:
+  contents: read
+  pull-requests: write
+  issues: write
 on:
   push:
     branches: [main, dev]
@@ -66,7 +69,9 @@ jobs:
           pytest -v --disable-warnings > results.txt
 
       # --- Post CML Report on PR ---
+      # --- Post CML Report on Pull Requests only ---
       - name: Post CML Report
+        if: github.event_name == 'pull_request'
         env:
           REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
