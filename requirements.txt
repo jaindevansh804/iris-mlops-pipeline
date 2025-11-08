@@ -1,0 +1,16 @@
+# Core ML
+scikit-learn==1.5.2
+pandas==2.2.3
+numpy==1.26.4
+
+# Feast + DVC
+feast==0.56.0
+dvc[gs]==3.63.0
+
+# Testing + CI
+pytest==8.3.2
+cml==0.0.1
+
+# Utilities
+pyarrow==17.0.0
+protobuf>=4.24.0
