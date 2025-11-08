@@ -30,25 +30,24 @@ jobs:
           pip install -r requirements.txt
 
       # --- Authenticate to Google Cloud ---
-      # Uses official GCP action instead of credentialpath
       - name: Authenticate to Google Cloud
         uses: google-github-actions/auth@v2
         with:
           credentials_json: ${{ secrets.GCP_SA_KEY }}
 
-      # --- Set up gcloud CLI ---
+      # --- Setup gcloud CLI ---
       - name: Setup gcloud CLI
         uses: google-github-actions/setup-gcloud@v2
         with:
           project_id: ${{ secrets.GCP_PROJECT_ID }}
 
-      # --- Verify authentication ---
+      # --- Verify GCP auth ---
       - name: Verify GCP auth
         run: |
           gcloud auth list
           gcloud config list project
 
-      # --- Configure and pull data from DVC remote (GCS) ---
+      # --- Pull data from DVC remote (GCS) ---
       - name: Pull data from DVC remote
         run: |
           dvc pull
@@ -60,10 +59,10 @@ jobs:
 
       # --- Post CML Report on PR ---
       - name: Post CML Report
-        uses: iterative/setup-cml@v3
         env:
           REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
+          npm install -g @dvcorg/cml
           echo "### ✅ CI Test Report" > report.md
           echo "\`\`\`" >> report.md
           cat results.txt >> report.md
