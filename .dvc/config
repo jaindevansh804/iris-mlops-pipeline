@@ -1,0 +1,5 @@
+[core]
+    remote = gcsremote
+['remote "gcsremote"']
+    url = gs://mlops-course-practice-ninth-stock-473508-c2-unique/dvcstore
+    credentialpath = /home/jupyter/.config/gcloud/application_default_credentials.json
